@@ -13,7 +13,7 @@ namespace FormScriptManager.Tests
         private readonly string sourceXml = @"<?xml version=""1.0"" encoding=""UTF-8"" ?>        <root>
             <children>
                 <child name=""name1"" role=""role1"" />
-                <child name=""name1"" role=""role2"" />
+                <child name=""name1"" role=""role2"" attr1=""test1"" attr2=""test2"" />
                 <child name=""name2"" />                
             </children>
         </root>
@@ -30,7 +30,9 @@ namespace FormScriptManager.Tests
             var attributes = new Dictionary<string, string>
             {
                 { "name", "name1" },
-                { "role", "role2" }
+                { "role", "role2" },
+                { "attr1", "test1" },
+                { "attr2", "test2" },
             };
 
             XmlUtilities.EnsureChildNode(childrenNode, "child[@name='name1' and @role='role2']", "child", attributes);
@@ -57,7 +59,7 @@ namespace FormScriptManager.Tests
             string expectedXml = @"<?xml version=""1.0"" encoding=""UTF-8"" ?>            <root>
                 <children>
                     <child name=""name1"" role=""role1"" />
-                    <child name=""name1"" role=""role2"" />
+                    <child name=""name1"" role=""role2"" attr1=""test1"" attr2=""test2"" />
                     <child name=""name2"" />                    
                     <child name=""name1"" role=""role3"" />
                 </children>
@@ -81,9 +83,39 @@ namespace FormScriptManager.Tests
             string expectedXml = @"<?xml version=""1.0"" encoding=""UTF-8"" ?>            <root>
                 <children>
                     <child name=""name1"" role=""role1"" />
-                    <child name=""name1"" role=""role2"" />
+                    <child name=""name1"" role=""role2"" attr1=""test1"" attr2=""test2"" />
                     <child name=""name2"" />                   
                     <new_node />
+                </children>
+            </root>
+            ";
+
+            AssertXmlEqual(xmlDocument.OuterXml, expectedXml);
+        }
+
+        [TestMethod]
+        public void CanUpdateAttributes()
+        {
+            XmlDocument xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(sourceXml);
+
+            XmlNode childrenNode = xmlDocument.ChildNodes[1].ChildNodes[0];
+
+            var attributes = new Dictionary<string, string>
+            {
+                { "name", "name1" },
+                { "role", "role2" },
+                { "attr1", "test1_new" },
+                { "attr2", "test2_new" },
+            };
+
+            XmlUtilities.EnsureChildNode(childrenNode, "child[@name='name1' and @role='role2']", "child", attributes);
+
+            string expectedXml = @"<?xml version=""1.0"" encoding=""UTF-8"" ?>            <root>
+                <children>
+                    <child name=""name1"" role=""role1"" />
+                    <child name=""name1"" role=""role2"" attr1=""test1_new"" attr2=""test2_new"" />
+                    <child name=""name2"" />  
                 </children>
             </root>
             ";

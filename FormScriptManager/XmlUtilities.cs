@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Xml;
 
 namespace FormScriptManager
@@ -15,6 +16,9 @@ namespace FormScriptManager
         /// <returns>The existing or created child node</returns>
         public static XmlNode EnsureChildNode(XmlNode parentNode, string childNodeQuery, string childNodeName = null, Dictionary<string, string> attributes = null)
         {
+            parentNode = parentNode ?? throw new ArgumentNullException(nameof(parentNode));
+            childNodeQuery = childNodeQuery ?? throw new ArgumentNullException(nameof(childNodeQuery));
+
             childNodeName = childNodeName ?? childNodeQuery;
             attributes = attributes ?? new Dictionary<string, string>();
 
@@ -30,12 +34,25 @@ namespace FormScriptManager
 
                 parentNode.AppendChild(childNode);
             }
+            else
+            {
+                childNode.Attributes.RemoveAll();
+
+                foreach (string key in attributes.Keys)
+                {
+                    AddAttribute(childNode, key, attributes[key]);
+                }
+            }
 
             return childNode;
         }
-
+        
         private static void AddAttribute(XmlNode node, string name, string value)
         {
+            node = node ?? throw new ArgumentNullException(nameof(node));
+            name = name ?? throw new ArgumentNullException(nameof(name));
+            value = value ?? throw new ArgumentNullException(nameof(value));
+
             var attribute = node.OwnerDocument.CreateAttribute(name);
             attribute.Value = value;
 
