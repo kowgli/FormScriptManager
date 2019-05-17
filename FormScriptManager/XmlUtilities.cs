@@ -14,7 +14,7 @@ namespace FormScriptManager
         /// <param name="childNodeName">(Optional) The name of the child node if needs to be created. Defaults to the XPath query if not specified. Makes sense if the query is just the name of the node.</param>
         /// <param name="attributes">(Optional) Key-value collection of attributes to add to the node if it is created</param>
         /// <returns>The existing or created child node</returns>
-        public static XmlNode EnsureChildNode(XmlNode parentNode, string childNodeQuery, string childNodeName = null, Dictionary<string, string> attributes = null)
+        public static XmlNode EnsureChildNode (XmlNode parentNode, string childNodeQuery, string childNodeName = null, Dictionary<string, string> attributes = null)
         {
             parentNode = parentNode ?? throw new ArgumentNullException(nameof(parentNode));
             childNodeQuery = childNodeQuery ?? throw new ArgumentNullException(nameof(childNodeQuery));
