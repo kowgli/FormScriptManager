@@ -11,8 +11,8 @@ namespace FormScriptManager
         [Flags]
         public enum FormTypes
         {
-            Main = 2,
-            QuickCreate = 7
+            Main = 1,
+            QuickCreate = 2
         }
 
         private readonly IOrganizationService orgService;
@@ -44,11 +44,11 @@ namespace FormScriptManager
 
             if((formTypes & FormTypes.Main) == FormTypes.Main)
             {
-                filterTypes.AddCondition("type", ConditionOperator.Equal, (int)FormTypes.Main);
+                filterTypes.AddCondition("type", ConditionOperator.Equal, 2);
             }
             if ((formTypes & FormTypes.QuickCreate) == FormTypes.QuickCreate)
             {
-                filterTypes.AddCondition("type", ConditionOperator.Equal, (int)FormTypes.QuickCreate);
+                filterTypes.AddCondition("type", ConditionOperator.Equal, 7);
             }
             query.Criteria.AddFilter(filterTypes);
 
