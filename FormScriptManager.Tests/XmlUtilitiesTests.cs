@@ -10,7 +10,8 @@ namespace FormScriptManager.Tests
     [TestClass]
     public class XmlUtilitiesTests
     {
-        private readonly string sourceXml = @"<?xml version=""1.0"" encoding=""UTF-8"" ?>        <root>
+        private readonly string sourceXml = @"<?xml version=""1.0"" encoding=""UTF-8"" ?>
+        <root>
             <children>
                 <child name=""name1"" role=""role1"" />
                 <child name=""name1"" role=""role2"" attr1=""test1"" attr2=""test2"" />
@@ -56,7 +57,8 @@ namespace FormScriptManager.Tests
 
             XmlUtilities.EnsureChildNode(childrenNode, "child2[@name='name1' and @role='role3']", "child", attributes);
 
-            string expectedXml = @"<?xml version=""1.0"" encoding=""UTF-8"" ?>            <root>
+            string expectedXml = @"<?xml version=""1.0"" encoding=""UTF-8"" ?>
+            <root>
                 <children>
                     <child name=""name1"" role=""role1"" />
                     <child name=""name1"" role=""role2"" attr1=""test1"" attr2=""test2"" />
@@ -76,11 +78,11 @@ namespace FormScriptManager.Tests
             xmlDocument.LoadXml(sourceXml);
 
             XmlNode childrenNode = xmlDocument.ChildNodes[1].ChildNodes[0];
-
           
             XmlUtilities.EnsureChildNode(childrenNode, "new_node");
 
-            string expectedXml = @"<?xml version=""1.0"" encoding=""UTF-8"" ?>            <root>
+            string expectedXml = @"<?xml version=""1.0"" encoding=""UTF-8"" ?>
+            <root>
                 <children>
                     <child name=""name1"" role=""role1"" />
                     <child name=""name1"" role=""role2"" attr1=""test1"" attr2=""test2"" />
@@ -111,7 +113,8 @@ namespace FormScriptManager.Tests
 
             XmlUtilities.EnsureChildNode(childrenNode, "child[@name='name1' and @role='role2']", "child", attributes);
 
-            string expectedXml = @"<?xml version=""1.0"" encoding=""UTF-8"" ?>            <root>
+            string expectedXml = @"<?xml version=""1.0"" encoding=""UTF-8"" ?>
+            <root>
                 <children>
                     <child name=""name1"" role=""role1"" />
                     <child name=""name1"" role=""role2"" attr1=""test1_new"" attr2=""test2_new"" />
@@ -121,6 +124,43 @@ namespace FormScriptManager.Tests
             ";
 
             AssertXmlEqual(xmlDocument.OuterXml, expectedXml);
+        }
+
+        [TestMethod]
+        public void DeletedWhenExists()
+        {
+            XmlDocument xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(sourceXml);
+
+            XmlNode childrenNode = xmlDocument.ChildNodes[1].ChildNodes[0];
+
+            bool deleted = XmlUtilities.RemoveChildNode(childrenNode, "child[@name='name1' and @role='role2']");
+
+            string expectedXml = @"<?xml version=""1.0"" encoding=""UTF-8"" ?>
+            <root>
+                <children>
+                    <child name=""name1"" role=""role1"" />                   
+                    <child name=""name2"" />                
+                </children>
+            </root>
+            ";
+
+            Assert.IsTrue(deleted);
+            AssertXmlEqual(xmlDocument.OuterXml, expectedXml);
+        }
+
+        [TestMethod]
+        public void NotDeletedWhenDoesntExists()
+        {
+            XmlDocument xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(sourceXml);
+
+            XmlNode childrenNode = xmlDocument.ChildNodes[1].ChildNodes[0];
+
+            bool deleted = XmlUtilities.RemoveChildNode(childrenNode, "child[@name='name1' and @role='???']");
+
+            Assert.IsFalse(deleted);
+            AssertXmlEqual(xmlDocument.OuterXml, sourceXml);
         }
 
         private void AssertXmlEqual(string xml1, string xml2)

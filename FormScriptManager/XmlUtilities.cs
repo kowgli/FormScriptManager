@@ -46,6 +46,29 @@ namespace FormScriptManager
 
             return childNode;
         }
+
+        /// <summary>
+        /// Removes a child node from the parent node
+        /// </summary>
+        /// <param name="parentNode">The parent node</param>
+        /// <param name="childNodeQuery">XPath query for finding the child node</param>
+        /// <returns>True - if removed, false - if not found</returns>
+        public static bool RemoveChildNode(XmlNode parentNode, string childNodeQuery)
+        {
+            parentNode = parentNode ?? throw new ArgumentNullException(nameof(parentNode));
+            childNodeQuery = childNodeQuery ?? throw new ArgumentNullException(nameof(childNodeQuery));
+
+            XmlNode childNode = parentNode.SelectSingleNode(childNodeQuery);
+
+            if(childNode == null)
+            {
+                return false;
+            }
+
+            parentNode.RemoveChild(childNode);
+
+            return true;
+        }
         
         private static void AddAttribute(XmlNode node, string name, string value)
         {
