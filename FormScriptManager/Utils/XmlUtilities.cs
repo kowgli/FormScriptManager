@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 
-namespace FormScriptManager
+namespace FormScriptManager.Utils
 {
     internal static class XmlUtilities
     {

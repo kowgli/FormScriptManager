@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml;
+﻿using FormScriptManager.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Org.XmlUnit.Builder;
 using Org.XmlUnit.Diff;
+using System.Collections.Generic;
+using System.Xml;
 
 namespace FormScriptManager.Tests
 {
@@ -78,7 +78,7 @@ namespace FormScriptManager.Tests
             xmlDocument.LoadXml(sourceXml);
 
             XmlNode childrenNode = xmlDocument.ChildNodes[1].ChildNodes[0];
-          
+
             XmlUtilities.EnsureChildNode(childrenNode, "new_node");
 
             string expectedXml = @"<?xml version=""1.0"" encoding=""UTF-8"" ?>

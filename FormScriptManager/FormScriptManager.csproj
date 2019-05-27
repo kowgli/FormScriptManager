@@ -65,10 +65,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="CrmCustomizationsProcessor.cs" />
-    <Compile Include="FormXmlProcessor.cs" />
+    <Compile Include="Manual\CrmCustomizationsProcessor.cs" />
+    <Compile Include="Manual\FormXmlProcessor.cs" />
     <Compile Include="Models\EntityForm.cs" />
-    <Compile Include="XmlUtilities.cs" />
+    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Processor.cs" />
+    <Compile Include="Utils\XmlUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

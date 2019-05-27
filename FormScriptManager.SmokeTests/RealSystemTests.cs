@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
+using FormScriptManager.Manual;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Tooling.Connector;
-using static FormScriptManager.CrmCustomizationsProcessor;
+using static FormScriptManager.Models.Enums;
 
 namespace FormScriptManager.SmokeTests
 {
@@ -79,19 +80,7 @@ namespace FormScriptManager.SmokeTests
 
             CrmCustomizationsProcessor crmCustomizationsProcessor = new CrmCustomizationsProcessor(OrgService);
 
-            var forms = crmCustomizationsProcessor.GetForms("lead", FormTypes.Main, null, new Guid("E3B6DDB7-8DF0-4410-AC7B-FD32E5053D38"));
-
-            Assert.IsTrue(forms.Length == 1);
-        }
-
-        [TestMethod]
-        public void CanGetByAllFiltersTogether()
-        {
-            if (!Debugger.IsAttached) { return; }
-
-            CrmCustomizationsProcessor crmCustomizationsProcessor = new CrmCustomizationsProcessor(OrgService);
-
-            var forms = crmCustomizationsProcessor.GetForms("lead", FormTypes.Main, "Lead", new Guid("E3B6DDB7-8DF0-4410-AC7B-FD32E5053D38"));
+            var forms = crmCustomizationsProcessor.GetForms("lead", FormTypes.Main, new Guid("E3B6DDB7-8DF0-4410-AC7B-FD32E5053D38"));
 
             Assert.IsTrue(forms.Length == 1);
         }
@@ -103,7 +92,7 @@ namespace FormScriptManager.SmokeTests
 
             CrmCustomizationsProcessor crmCustomizationsProcessor = new CrmCustomizationsProcessor(OrgService);
 
-            var forms = crmCustomizationsProcessor.GetForms("lead", FormTypes.Main, null, Guid.NewGuid());
+            var forms = crmCustomizationsProcessor.GetForms("lead", FormTypes.Main, Guid.NewGuid());
 
             Assert.IsTrue(forms.Length == 0);
         }

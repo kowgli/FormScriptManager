@@ -1,9 +1,13 @@
-﻿using System;
+﻿using FormScriptManager.Utils;
+using System;
 using System.Collections.Generic;
 using System.Xml;
 
-namespace FormScriptManager
+namespace FormScriptManager.Manual
 {
+    /// <summary>
+    /// Groups together methods to work with Form XML
+    /// </summary>
     public static class FormXmlProcessor
     {
         public enum EventTypes
