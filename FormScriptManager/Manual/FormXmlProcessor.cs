@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Xml;
+using static FormScriptManager.Models.Enums;
 
 namespace FormScriptManager.Manual
 {
@@ -10,12 +11,6 @@ namespace FormScriptManager.Manual
     /// </summary>
     public static class FormXmlProcessor
     {
-        public enum EventTypes
-        {
-            OnLoad,
-            OnSave
-        }
-
         /// <summary>
         /// Adds the specified form library to the FormXml, if not already there.
         /// </summary>

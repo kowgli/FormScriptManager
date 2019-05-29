@@ -60,6 +60,20 @@ namespace FormScriptManager.Manual
         }
 
         /// <summary>
+        /// Updates the Form XML of the chosen form.
+        /// </summary>
+        /// <param name="formId">Primary ID of the form.</param>
+        /// <param name="formXml">New Form XML.</param>
+        public void UpdateFormXmlOnForm(Guid formId, string formXml)
+        {
+            Entity systemForm = new Entity("systemform");
+            systemForm["formid"] = formId;
+            systemForm["formxml"] = formXml;
+
+            orgService.Update(systemForm);
+        }
+
+        /// <summary>
         /// Publishes changes to the selected entity. Call this after updating the Form XML.
         /// </summary>
         /// <param name="entity">Logical name of the entity to publish.</param>

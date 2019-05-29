@@ -13,5 +13,11 @@ namespace FormScriptManager.Models
             Main = 1,
             QuickCreate = 2
         }
+       
+        public enum EventTypes
+        {
+            OnLoad = 1,
+            OnSave = 2
+        }
     }
 }
