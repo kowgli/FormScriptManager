@@ -1,4 +1,5 @@
 ﻿using FormScriptManager.Models;
+using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using System;
@@ -56,6 +57,16 @@ namespace FormScriptManager.Manual
         public EntityForm[] GetForms(string entity, FormTypes formTypes, Guid formId)
         {
             return GetForms(entity, formTypes, null, formId);
+        }
+
+        /// <summary>
+        /// Publishes changes to the selected entity. Call this after updating the Form XML.
+        /// </summary>
+        /// <param name="entity">Logical name of the entity to publish.</param>
+        public void PublishEntity(string entity)
+        {
+            var request = new PublishXmlRequest { ParameterXml = $"<importexportxml><entities><entity>{entity}</entity></entities></importexportxml>" };
+            orgService.Execute(request);
         }
        
         private EntityForm[] GetForms(string entity, FormTypes formTypes, string name, Guid? formId)
