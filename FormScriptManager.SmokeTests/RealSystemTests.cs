@@ -96,5 +96,18 @@ namespace FormScriptManager.SmokeTests
 
             Assert.IsTrue(forms.Length == 0);
         }
+
+        [TestMethod]
+        public void FullRegistrationTest()
+        {
+            if (!Debugger.IsAttached) { return; }
+
+            Processor.AddFormScript(OrgService, "lead", FormTypes.Main | FormTypes.QuickCreate, "new_testscript.js", "test_onload", EventTypes.OnLoad);
+            Processor.AddFormScript(OrgService, "lead", FormTypes.Main | FormTypes.QuickCreate, "new_testscript.js", "test_onsave", EventTypes.OnSave);
+
+            // Run it second time to check no dupes
+            Processor.AddFormScript(OrgService, "lead", FormTypes.Main | FormTypes.QuickCreate, "new_testscript.js", "test_onload", EventTypes.OnLoad);
+            Processor.AddFormScript(OrgService, "lead", FormTypes.Main | FormTypes.QuickCreate, "new_testscript.js", "test_onsave", EventTypes.OnSave);
+        }
     }
 }
