@@ -132,9 +132,6 @@
     <Content Include="bin\Debug\Microsoft.Xrm.Tooling.Connector.dll" />
     <Content Include="bin\Debug\Microsoft.Xrm.Tooling.Connector.xml" />
     <Content Include="bin\Debug\__ConnectionString.txt" />
-    <Content Include="__ConnectionString.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FormScriptManager\FormScriptManager.csproj">
