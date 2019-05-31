@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>FormXmlManager</id>
+    <version>1.0.0.0</version>
+    <title>Dynamics CRM / CE Form XML Manager</title>
+    <authors>Łukasz Grzybowski-Glikman</authors>
+    <owners>Łukasz Grzybowski-Glikman</owners>
+    <licenseUrl>https://github.com/kowgli/FormScriptManager/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/kowgli/FormScriptManager</projectUrl>    
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Manage Dynamics CRM / CE form scripts using C#</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>CRM Form XML FormXml C# Dynamics365</tags>
+  </metadata>
+</package>
