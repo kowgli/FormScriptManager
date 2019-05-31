@@ -6,6 +6,14 @@ Using it you can add on-load and on-save scripts on specified forms.
 
 It has two modes of operation: **simplified** (which has a set of common sense default values) and **manual** where you can setup everything yourself.
 
+## Installing via NuGet
+
+```
+Install-Package FormScriptManager
+```
+
+[NuGet link](https://www.nuget.org/packages/FormScriptManager/)
+
 ## Simplified mode
 
 Just register an on-load or on-save script on all entities Main or Quick Create forms. Publish entity after it's done.
