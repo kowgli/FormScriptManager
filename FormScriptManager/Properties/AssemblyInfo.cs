@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FormScriptManager")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Form Script Manager")]
+[assembly: AssemblyDescription("Manage Dynamics CRM / CE form scripts using C#")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FormScriptManager")]
+[assembly: AssemblyCompany("Łukasz Grzybowski-Glikman")]
+[assembly: AssemblyProduct("Form Script Manager")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
