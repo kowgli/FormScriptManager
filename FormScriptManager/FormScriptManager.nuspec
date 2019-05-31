@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>FormXmlManager</id>
+    <id>FormScriptManager</id>
     <version>1.0.0.0</version>
     <title>Dynamics CRM / CE Form XML Manager</title>
     <authors>Łukasz Grzybowski-Glikman</authors>
